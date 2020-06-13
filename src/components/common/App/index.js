@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import history from '../../../history';
 import { routing } from '../../../helpers/routing.js';
 import { authorize } from '../../../helpers/auth.js';
-import PageWrapper from '../PageWrapper';
+import PageWrapper from '../../PageWrapper';
 
 const App = ({auth}) => {
   const [user, isAuthenticated] = authorize(auth);

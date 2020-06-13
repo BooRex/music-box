@@ -1,0 +1,14 @@
+import React from 'react';
+import * as PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const NextIcon = styled.div`
+  border:none;
+  background:none;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABmJLR0QA/wD/AP+gvaeTAAACY0lEQVR4nO3bMWsUQRyG8XdUAlFsBC0s7VNIrMXKJiC2IhYBsbXwC/gFLGz8ANrZqZV2NoLYhDSmtRFFESSggSM+FndHFkmy3s7M7czu+/sAy/PP7C6X3R3JzMzMzMzMzMzMzMzMzMzMzMzMzCyZkOpAwKqkdUkTSdshhN+pjj2EnqyATeAHB74C94BkC1xzT1bATeAPh3sFXBhzT3bAhyOGnfsCbIy1Jztgr2VgZmfkE+D02Hqy+49hmz4C62PqyW7BgQEmwEPg5Bh6susw8Nw74NLQe7KLGBjgJ3BnyD3ZRQ489xw4N8Se7BINDPAJuDa0nuwSDgzTn4ePgZWh9GSXeOC5bWBtCD1tTuQ4aAJrkt4D9ynj+U1pPQcynXFNr4GLtfa0KfUKaLouaQu40XfITNKeGhZAks5LegE8Bc70HaOEPdH3M4DYYyxoR9KtEMJWDT1talwASdqVdPWwoUvraVPLLehfZyU96juioXNPrVeAJO1LWg0hTEruaVPrFTAYNS/A20XPtsw69dS6ALuSHvQd0dC5p8YF2FHHXxyZRPXUtgDPJF0p6I8f3XMqYUxO3yTdDSG87DtkJllPDQvwRtJmCOFz3yEzZfVkfOr4iw6Pf0vryS7TsKN5IRMt8aB+JbmohMP6pXwXiYb1ZyldRQ7qD7NiRQzrTxNT6DCoP85NacFh/Xl6akz/QWmzzA0aRfVkx/TeeZxlb1Eqqic7YAPYP2LYPjbpFdWzFMBt4Htj0L63qRbVc5yUG7VXJF2WhKYbo/dSHXsIPWZmZmZmZmZmZmZmZmZmZmZmZmZmS/AXn8kxqTxNzFIAAAAASUVORK5CYII=');
+  background-size: 100%;
+  width: 50px;
+  height: 50px
+`;
+
+export default NextIcon;

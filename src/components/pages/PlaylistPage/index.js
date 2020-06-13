@@ -1,48 +1,20 @@
 import React from 'react';
 import MusicList from './MusicList';
+import Player from './Player';
+import { connect } from 'react-redux';
 
-const items = [
-  {
-    id: 1,
-    name: 'Spirit',
-    author: 'Keiino',
-    time: '3:06'
-  },
-  {
-    id: 2,
-    name: 'Spirit',
-    author: 'Keiino',
-    time: '3:06'
-  },
-  {
-    id: 3,
-    name: 'Spirit',
-    author: 'Keiino',
-    time: '3:06'
-  }
-];
-
-const styles = {
-  header: {
-    textAlign: 'center',
-    fontSize: '30px',
-    fontWeight: 'bold',
-    color: '#fff',
-
-  }
-}
-
-const PlaylistPage = () => {
-  // const {} = props;
-
+const PlaylistPage = ({items, itemToPlay}) => {
   return (
     <div>
-      <div style={styles.header}>Playlist</div>
-      <MusicList items={items}/>
+      <MusicList/>
+      {itemToPlay ? <Player itemToPlay={itemToPlay}/> : ''}
     </div>
   );
 };
 
-PlaylistPage.propTypes = {};
 
-export default PlaylistPage;
+const mapStateToProps = state => ({
+  itemToPlay: state.player.itemToPlay
+});
+
+export default connect(mapStateToProps, null)(PlaylistPage);

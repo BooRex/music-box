@@ -3,8 +3,8 @@ import * as PropTypes from 'prop-types';
 import Joi from '@hapi/joi';
 import { connect } from 'react-redux';
 import useForm from '../../../hooks/useForm';
-import TextInput from '../../common/TextInput';
-import Button from '../../common/Button';
+import TextInput from './TextInput';
+import Button from './Button';
 import { login } from '../../../store/auth/actions';
 
 const INIT_FORM = {
