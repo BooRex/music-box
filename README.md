@@ -2,5 +2,5 @@
 
 1. `git clone https://github.com/BooRex/music-box.git`
 2. `cd music-box`
-3. `yarn`
-4. `yarn start`
+3. `npm i`
+4. `npm start`
