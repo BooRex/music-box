@@ -1,30 +1,24 @@
 import React from 'react';
-import * as PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const StyledWrapper = styled.div`
+const StyledSongInfo = styled.div`
   color: #fff;
-  margin-left: 10px;
+  line-height: 25px;
   display: flex;
   flex-direction: column;
   flex: 1;
   align-self: center;
-  min-width: 1px;
 `;
 
 const StyledSongName = styled.div`
-  font-weight: 'bold',
+  font-weight: bold;
 `;
 
-const StyledAuthor = styled.div`
- 
-`;
-
-const SongInfo = ({name, author}) => (
-  <StyledWrapper>
+const SongInfo = ({name, author}) => {
+  return <StyledSongInfo>
     <StyledSongName>{name}</StyledSongName>
-    <StyledAuthor>{author}</StyledAuthor>
-  </StyledWrapper>
-);
+    <div>{author}</div>
+  </StyledSongInfo>;
+};
 
-export default SongInfo;
+export default React.memo(SongInfo);

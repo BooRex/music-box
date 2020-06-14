@@ -1,39 +1,41 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useContext } from 'react';
 import MusicItem from './MusicItem';
 import styled from 'styled-components';
-import { setItemToPlay } from '../../../../store/player/actions';
+import { PlaylistContext } from '../index';
 
 const StyledMusicList = styled.ul`
   margin: 0;
   padding: 0;
   overflow-y: auto;
-  height: 80vh;
+  height: ${({isPlaying}) => isPlaying 
+    ? 'calc(100vh - 108px)' 
+    : '100vh'};
   position: relative;
+  
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 5px;
+  }
 `;
 
-const MusicList = ({items, setItemToPlay}) => {
-  const onSelect = id => setItemToPlay(id);
+const MusicList = ({items, onSelectMusic}) => {
+  const {isPlaying} = useContext(PlaylistContext);
 
   return (
-    <StyledMusicList>
+    <StyledMusicList isPlaying={isPlaying}>
       {items.map(item =>
         <MusicItem
           key={item.id}
-          onSelect={onSelect}
-          {...item}
+          item={item}
+          onSelect={onSelectMusic}
         />
       )}
     </StyledMusicList>
   );
 };
 
-const mapStateToProps = state => ({
-  items: state.player.items,
-});
-
-const mapDispatchToProps = {
-  setItemToPlay
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(MusicList);
+export default MusicList;

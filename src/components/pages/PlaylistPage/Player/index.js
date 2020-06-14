@@ -1,88 +1,142 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import * as PropTypes from 'prop-types';
 import SongInfo from '../../../common/SongInfo';
-import { connect } from 'react-redux';
-import { play, pause, prev, next } from '../../../../store/player/actions';
 import PlayIcon from '../../../common/Icons/PlayIcon';
 import PauseIcon from '../../../common/Icons/PauseIcon';
 import PrevIcon from '../../../common/Icons/PrevIcon';
 import NextIcon from '../../../common/Icons/NextIcon';
-import ProgressBar from './ProgressBar';
+import { PlaylistContext } from '../index';
+import Volume from './Volume';
+import Bar from './Bar';
+import { getFormattedTime } from '../../../../helpers';
 
 const StyledPlayer = styled.div`
-  height: 20vh;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   color: #fff;
-  background: #333
+  background: #333;
 `;
 
-const Player = ({itemToPlay, isPlaying, play, pause, prev, next}) => {
-  const [time, setTime] = useState();
-  const [duration, setDuration] = useState();
+const StyledPlayerContent = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
 
-  const onAudioPlay = () => {
-    const audio = document.getElementById('audio');
+const StyledControls = styled.div`
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 50px;
+`;
 
-    const onTimeUpdate = () => setTime(audio.currentTime);
+const StyledTime = styled.div`
+  line-height: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+`;
+
+const StyledSongInfo = styled.div`
+  padding-left: 20px;
+  text-align: center;
+`;
+
+const Player = props => {
+  const {
+    onPlay,
+    onPause,
+    onPrev,
+    onNext
+  } = props;
+
+  const {isPlaying, musicToPlay} = useContext(PlaylistContext);
+
+  const audio = useRef(null);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(100);
+  const [volume, setVolume] = useState(1);
+
+  const onAudioUpdate = () => {
+    const track = audio.current;
+
+    const onTimeUpdate = () => setCurrentTime(track.currentTime);
+    const onEnded = () => onNext();
     const onDataLoaded = () => {
-      setDuration(audio.duration);
-      setTime(audio.currentTime);
+      setDuration(track.duration);
+      setCurrentTime(track.currentTime);
+      setVolume(track.volume);
     };
 
-    audio.addEventListener('timeupdate', onTimeUpdate);
-    audio.addEventListener('loadeddata', onDataLoaded);
+    const onKeyPress = e => e.code === 'Space'
+      ? isPlaying
+        ? onPause()
+        : onPlay()
+      : null;
 
-    isPlaying ? audio.play() : audio.pause();
+    track.addEventListener('timeupdate', onTimeUpdate);
+    track.addEventListener('loadeddata', onDataLoaded);
+    track.addEventListener('ended', onEnded);
+    window.addEventListener('keypress', onKeyPress);
+
+    isPlaying ? track.play() : track.pause();
 
     return () => {
-      audio.removeEventListener('timeupdate', onTimeUpdate);
-      audio.removeEventListener('loadeddata', onDataLoaded);
+      track.removeEventListener('timeupdate', onTimeUpdate);
+      track.removeEventListener('loadeddata', onDataLoaded);
+      track.removeEventListener('ended', onEnded);
+      window.removeEventListener('keypress', onKeyPress);
     };
   };
 
-  useEffect(onAudioPlay, [itemToPlay, isPlaying]);
+  useEffect(onAudioUpdate);
 
-  const mouseMove = (e) => {
-   console.log('---', 'mouseMove');
+  const onChangeVolume = value => {
+    setVolume(value);
+    audio.current.volume = value;
+  };
+  const onChangeCurrentTime = value => {
+    setCurrentTime(value);
+    audio.current.currentTime = value;
   };
 
-  const mouseUp = (e) => {
-    console.log('---', 'mouseUp');
-  };
-
-  const mouseDown = (e) => {
-    console.log('---', 'mouseDown');
-  };
+  const getTime = () => `${getFormattedTime(currentTime)} / ${getFormattedTime(duration)}`;
 
   return (
     <StyledPlayer>
-      <audio src={itemToPlay.link} id="audio"/>
+      <audio ref={audio} src={musicToPlay.link}/>
+      <Bar
+        currentTime={currentTime}
+        duration={duration}
+        onChange={onChangeCurrentTime}
+      />
+      <StyledPlayerContent>
 
-      <PrevIcon onClick={prev}/>
-      {isPlaying
-        ? <PlayIcon onClick={pause}/>
-        : <PauseIcon onClick={play}/>
-      }
-      <NextIcon onClick={next}/>
-      <SongInfo time={time}/>
-      <div id="timeline" onClick={mouseMove} ref={(timeline) => { timeline = timeline }}>
-        <div id="handle" onMouseDown={mouseDown} ref={(handle) => { handle = handle }} />
-      </div>
-      <ProgressBar duration={duration} time={time}/>
+        <StyledControls>
+          <PrevIcon onClick={onPrev}/>
+          {isPlaying
+            ? <PauseIcon onClick={onPause}/>
+            : <PlayIcon onClick={onPlay}/>
+          }
+          <NextIcon onClick={onNext}/>
+          <StyledTime>{getTime()}</StyledTime>
+        </StyledControls>
+
+        <StyledSongInfo>
+          <SongInfo
+            name={musicToPlay.name}
+            author={musicToPlay.author}
+          />
+        </StyledSongInfo>
+
+        <Volume
+          volume={volume}
+          onChangeVolume={onChangeVolume}
+        />
+      </StyledPlayerContent>
     </StyledPlayer>
   );
 };
 
-const mapStateToProps = state => ({
-  isPlaying: state.player.isPlaying
-});
-
-const mapDispatchToProps = {
-  play,
-  pause,
-  prev,
-  next
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Player);
+export default Player;

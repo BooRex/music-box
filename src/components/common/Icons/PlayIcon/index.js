@@ -1,5 +1,3 @@
-import React from 'react';
-import * as PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const PlayIcon = styled.div`
@@ -8,7 +6,12 @@ const PlayIcon = styled.div`
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAABmJLR0QA/wD/AP+gvaeTAAADO0lEQVR4nO3du2sUURQG8O/4RFGw8VFqrY2VVioY/4RYametEA0GRBCEaGMEBS0UwU7zH2wstDNB0qixU4MR8YWiFsm6fhaTSzYk2Z3HvXPmzpxfPcyc+zE7O2dn7l3AGGOMMcYYY+qI5CaS10h+JPmF5BjJXdp11Q7JUa70k+QIya3a9dXG4pm8lg8kz5Bcr11n9HqE3O01yUHtWqOWMmhnguRB7ZqjlDFokvxH8hHJfdq1RyVH0M48yZskd2iPIQoFgna+kRwmuVl7LJXmIWjnHclTJEV7TJXkMWhnkuQR7XFVToCgnRbJA9rjq4yAQZNkm+Rdknu0x6kucNDObyat/nbt8aopKWinuS19yUE7Ubb0hW6nSNJXITk8AXBeRKYVa0htnXYBBRwH8IKRtPQxBw0kn8hBAG9Y8ZY+5kvHar4DuA5gTETmtYvpVregnVkAlwA8FJFK1FjXoJ0pAEMi8ky7kLoH7UwAOCciL7UKiP3LMK0BANNUbOmbckZ3+wPgFoCrIvKrrIM2MWhnDsAVAPdEpBP6YE0O2pkBcFlEHoc8iAW9JGhL35QvwzSCtvQW9HLBWnq7dPTmraW3oNMp3NJb0Nnkbukt6Hwyt/QWdH5tALcBXBCRdr+NN4Svp7Y2AjgLoANgqN/GdkYX91VEdvbbyO6jS2JBF/cgzUZ2jc6vjeTn1pE0G1vQ+WS+vbNLRzZTAI6JyImsj8Us6HRmAZwGcEhEnubZgV06evP2o5IFvboFAHeQPHn54WOHFvRyBDAOYFhE3vrcsQW9xB5lBTYD4KSIDIR8BbjJZ3Sprxs0MWiVF2iaFPRfAPeR3El8KvvgTQnaXnIMbBLA0Twts291Dfo9kpb5cBXejQbqd+mo7NSKugTtvWX2Lfagg7XMvsUcdFQTOgsJNgm5tyinKBdScsA26T4wt4zENu3xqgkc8AKTWVS7tcepLmDILZL7tcdXGQECfk5bvGoljwHbcmy9eAjYFhhMo0DAtmRmFjkC7jCZXrZXu/aoZAy5RVvWOJ+UAb9i01pm30jO9Qi4uS2zb1z7zxQuktyiXV9tMPl7kNHFM/szyRsk+87nMMYYY4wxxhhTIf8BjrJOKHOmIYoAAAAASUVORK5CYII=');
   background-size: 100%;
   width: 50px;
-  height: 50px
+  height: 50px;
+  cursor: pointer;
+  
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 export default PlayIcon;

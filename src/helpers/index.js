@@ -1,4 +1,5 @@
 import history from '../history';
+import moment from 'moment';
 
 const getToken = () => {
   const state = localStorage.getItem('state');
@@ -66,3 +67,5 @@ export const loadState = () => {
 };
 
 export const redirect = route => history.push(route);
+
+export const getFormattedTime = time => time ? moment.utc(time * 1000).format('mm:ss') : '--';

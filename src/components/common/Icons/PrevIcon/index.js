@@ -1,5 +1,3 @@
-import React from 'react';
-import * as PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const PrevIcon = styled.div`
@@ -8,7 +6,12 @@ const PrevIcon = styled.div`
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABmJLR0QA/wD/AP+gvaeTAAACdUlEQVR4nO3bPWsUURiG4eeVCEbETsHGOo0o6WwsBRHsLGzEylbwF/gHLLQQ7Oys1UZsRLERFIOVhT/AD6yMGD9vizVuAtnNTuacs6+Z5+pzuF9mNzM7c0YyMzMzMzMzMzMzMzMzMzMzMzMzMysm5h0wK2BR0nFJC5JeRsRX9zQABHAZ+MDYJ+CSeyoDDgMP2Npv4NyQe6oCzgLvJgy77vlQe6oB9gO3/n6itrM2tJ6qgGPA6xkG/WdIPdUwOrFdAb51GbbWwNl6qgKOAo+7Dlpr4Gw9VQHnGV3C7dhu7qkGOAjc7jNoyYGz9VQFnATelhi2xMDZeqoBFoBrwM9Sw/YZOFtPVcAS8KLkoH0GztZTFXARWK0x7E4GztZTDXAIuFdr0K4DZ+tZt9D1D2Yc9rSkO5KO1Fi/q2w9G+0puRiwCNyQ9FAJhs3Ws5Vi3wDghKS7kpZKrdlHtp5JihwAYFnSE0kHSqzXV7aeaUr9C7quXMNm65mo9zNhYK+kNRU+n8wqIjbNkK1nO3OJtLHeByAifkh6WqCliGw92yn1Dbgq6XOhtUrI1jNRkQMQEa8knZL0psR6fWXrmabYOSAiViQtS7opae73RLL1TFJlZ1zLn/6zXHVk69moylVQRDzSaNve/Rrrd5WtpymS3f7N1tMEyR6AZOtpgmSPALP1NEOyh+DZepog2TaQbD3NkGwjVLaeJki2FTBbTxMk2wybracZkm0Hz9bTBN1eiPgytJ5mmO2VoGdD7WmC6S/F/QLODLmnCcavhb7fMOxH4MJu6PmfXtTep9EdTSStRMR395iZmZmZmZmZmZmZmZmZmZmZmZmZbfIHeCjOsujpjCgAAAAASUVORK5CYII=');
   background-size: 100%;
   width: 50px;
-  height: 50px
+  height: 50px;
+  cursor: pointer;
+  
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 export default PrevIcon;
