@@ -1,8 +1,16 @@
-import { API_ROUTE } from '../constants/apiRoutes';
-import { request } from '../helpers/index';
+import { call } from '@redux-saga/core/effects';
 
-export const login = payload => request({
-  url: API_ROUTE.LOGIN,
-  method: 'POST',
-  body: JSON.stringify(payload)
-});
+const delay = () => new Promise(resolve => setTimeout(resolve, 2000));
+
+//Симуляция реального запроса
+export function* login(payload) {
+  yield call(delay);
+
+  return {
+    token: 'kdnas743h4d3hfh7348fh34f',
+    user: {
+      id: +new Date(),
+      email: payload.email,
+    }
+  };
+}

@@ -6,11 +6,11 @@ import { ROUTES } from '../../constants/routes';
 
 function* loginUser({payload}) {
   try {
-    const response = yield call(login , payload);
+    const response = yield call(login, payload);
 
-    yield put(loginSuccess({...response.data}));
+    yield put(loginSuccess(response));
 
-    yield redirect(ROUTES.ADMIN.DASHBOARD);
+    yield redirect(ROUTES.PLAYLIST_PAGE);
   } catch (e) {
     yield put(loginFail())
   }

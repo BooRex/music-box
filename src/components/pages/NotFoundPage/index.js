@@ -1,24 +1,24 @@
 import React, { memo } from 'react';
 import { ROUTES } from '../../../constants/routes';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
-const styles = {
-  wrapper: {
-    display: 'flex',
-    justifyContent: 'center',
-    height: '100vh',
-    alignItems: 'center'
-  },
-  text: {
-    textDecoration: 'none',
-    color: '#fff'
-  }
+const StyledNotFoundPage = styled.div`
+  display: flex; 
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+`;
+
+const linkStyles = {
+  textDecoration: 'none',
+  color: '#fff'
 };
 
 const NotFoundPage = () => (
-  <div style={styles.wrapper}>
-    <Link to={ROUTES.PLAYLIST_PAGE} style={styles.text}>PAGE NOT FOUND</Link>
-  </div>
+  <StyledNotFoundPage>
+    <Link to={ROUTES.PLAYLIST_PAGE} style={linkStyles}>PAGE NOT FOUND</Link>
+  </StyledNotFoundPage>
 );
 
 export default memo(NotFoundPage);

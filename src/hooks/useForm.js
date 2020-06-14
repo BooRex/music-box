@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Joi from '@hapi/joi';
-import * as PropTypes from 'prop-types';
 
 const useForm = initForm => {
   const [form, setForm] = useState(initForm);
@@ -37,14 +36,6 @@ const useForm = initForm => {
   const clearForm = () => setForm(initForm);
 
   return [form, onChangeField, validateForm, clearForm];
-};
-
-useForm.propTypes = {
-  initForm: PropTypes.objectOf({
-    fields: PropTypes.object,
-    errorFields: PropTypes.arrayOf(PropTypes.string),
-    rules: PropTypes.object
-  })
 };
 
 export default useForm;
