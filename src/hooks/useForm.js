@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Joi from '@hapi/joi';
 
-const useForm = initForm => {
+export const useForm = initForm => {
   const [form, setForm] = useState(initForm);
 
   const onChangeField = e => {
@@ -37,5 +37,3 @@ const useForm = initForm => {
 
   return [form, onChangeField, validateForm, clearForm];
 };
-
-export default useForm;

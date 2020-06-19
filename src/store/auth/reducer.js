@@ -1,23 +1,16 @@
-import { types } from './actions';
+import { loginFail, loginSuccess } from './actions';
+import { createReducer } from '@reduxjs/toolkit';
 
 const INIT = {
   token: '',
   user: {},
 };
 
-export const authReducer = (state = INIT, action) => {
-  const {type, payload} = action;
-
-  switch (type) {
-    case types.LOGIN_SUCCESS:
-      return {
-        ...state,
-        user: payload.user,
-        token: payload.token
-      };
-    case types.LOGIN_FAIL:
-      return INIT;
-    default:
-      return state;
-  }
-};
+export const authReducer = createReducer(INIT, {
+  [loginSuccess]: (state, {payload}) => ({
+    ...state,
+    user: payload.user,
+    token: payload.token
+  }),
+  [loginFail]: () => INIT
+});

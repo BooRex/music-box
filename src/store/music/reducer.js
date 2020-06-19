@@ -1,4 +1,5 @@
-import { types } from './actions';
+import { fetchMusicListSuccess } from './actions';
+import { createReducer } from '@reduxjs/toolkit';
 
 const MUSIC = [
   {
@@ -70,13 +71,6 @@ const INIT = {
   items: MUSIC
 };
 
-export const musicReducer = (state = INIT, action) => {
-  const {type, payload} = action;
-
-  switch (type) {
-    case types.FETCH_MUSIC_LIST_SUCCESS:
-      return {...state, items: payload};
-    default:
-      return state;
-  }
-};
+export const musicReducer = createReducer(INIT, {
+  [fetchMusicListSuccess]: (state, {payload}) => ({...state, items: payload}),
+});

@@ -10,15 +10,15 @@ export const usePlayer = items => {
     const currIndex = items.map(item => item.id).indexOf(musicToPlay.id);
 
     onSelectMusic(currIndex === 0
-      ? musicToPlay
+      ? items[items.length - 1]
       : items[currIndex - 1]
     );
   };
-  const onNext = () => {
+  const onNextOrEnd = () => {
     const currIndex = items.map(item => item.id).indexOf(musicToPlay.id);
 
     onSelectMusic(currIndex === items.length - 1
-      ? musicToPlay
+      ? items[0]
       : items[currIndex + 1]
     );
   };
@@ -34,6 +34,6 @@ export const usePlayer = items => {
     onPlay,
     onPause,
     onPrev,
-    onNext
+    onNextOrEnd,
   }
 }
