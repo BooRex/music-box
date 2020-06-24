@@ -6,6 +6,9 @@ export const useAudio = (link, isPlaying, events) => {
   const [duration, setDuration] = useState(100);
   const [volume, setVolume] = useState(1);
 
+  const onChangeAudio = () => {
+    audio.src= link;
+  };
   const onUpdate = () => {
     const onTimeUpdate = () => setCurrentTime(audio.currentTime);
     const onDataLoaded = () => {
@@ -36,6 +39,7 @@ export const useAudio = (link, isPlaying, events) => {
   };
 
   useEffect(onUpdate);
+  useEffect(onChangeAudio, [link]);
 
   const onChangeVolume = value => {
     setVolume(value);
