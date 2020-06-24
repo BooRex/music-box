@@ -23,8 +23,8 @@ export const LoginPage = () => {
   const dispatch = useDispatch();
   const [form, onChangeField, validateForm, clearForm] = useForm(INIT_FORM);
 
-  const loginUser = useCallback(() => {
-    dispatch(login);
+  const loginUser = useCallback(fields => {
+    dispatch(login(fields));
   }, [dispatch]);
 
   const onSubmitForm = e => {
