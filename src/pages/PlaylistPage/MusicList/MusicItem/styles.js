@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledMusicItem = styled.li`
   list-style: none;
-  border: 1px solid #fff;
+  border: 1px solid #444;
   border-radius: 5px;
   padding: 20px;
   display: flex;

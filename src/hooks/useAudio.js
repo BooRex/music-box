@@ -25,7 +25,7 @@ export const useAudio = (link, isPlaying, events) => {
 
     audio.addEventListener('timeupdate', onTimeUpdate);
     audio.addEventListener('loadeddata', onDataLoaded);
-    audio.addEventListener('ended', events.onEnd);
+    audio.addEventListener('ended', events.onNextOrEnd);
     window.addEventListener('keypress', onKeyPress);
 
     isPlaying ? audio.play() : audio.pause();
@@ -33,7 +33,7 @@ export const useAudio = (link, isPlaying, events) => {
     return () => {
       audio.removeEventListener('timeupdate', onTimeUpdate);
       audio.removeEventListener('loadeddata', onDataLoaded);
-      audio.removeEventListener('ended', events.onEnd);
+      audio.removeEventListener('ended', events.onNextOrEnd);
       window.removeEventListener('keypress', onKeyPress);
     };
   };
